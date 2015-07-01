@@ -10,12 +10,15 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let caffeine: CaffeineInjector = CaffeineInjector()
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        var monitor = ProcessMonitor()
+        let monitor = ProcessMonitor()
         monitor.fetch()
-        NSLog(monitor.isApplicationRunning("com.apple.Preview") ? "Yes" : "No")
+        let test = (monitor.isApplicationRunning("com.apple.Preview") ? "Yes" : "No")
+        NSLog(test)
+        caffeine.inject()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {

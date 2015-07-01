@@ -11,15 +11,11 @@ import Cocoa
 class ProcessMonitor: NSObject {
     var runningApplications: [NSRunningApplication] = []
     
-    override init() {
-        super.init()
-    }
-    
     func isApplicationRunning(bundleIdentifier: String) -> Bool {
-        return contains(runningApplications, {$0.bundleIdentifier == bundleIdentifier})
+        return runningApplications.contains({$0.bundleIdentifier == bundleIdentifier})
     }
     
     func fetch() {
-        runningApplications = NSWorkspace.sharedWorkspace().runningApplications as! [NSRunningApplication]
+        runningApplications = NSWorkspace.sharedWorkspace().runningApplications as [NSRunningApplication]
     }
 }

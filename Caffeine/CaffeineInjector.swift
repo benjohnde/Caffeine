@@ -8,12 +8,34 @@
 
 import Cocoa
 
+enum CaffeineStatus {
+    case Clean
+    case Injected
+}
+
 class CaffeineInjector: NSObject {
-    func init() {
-        
-    }
+    var caffeinateTask: NSTask?
+    let arguments = ["-disu", "-w \(NSProcessInfo.processInfo().processIdentifier)"]
     
     func inject() {
-        
+        giveAntidote()
+        caffeinateTask = NSTask.launchedTaskWithLaunchPath("/usr/bin/caffeinate", arguments: arguments)
+    }
+    
+    func giveAntidote() {
+        if let task = caffeinateTask {
+            task.terminationHandler = nil
+            task.terminate()
+            caffeinateTask = nil
+        }
+    }
+    
+    func status() -> CaffeineStatus {
+        if let task = caffeinateTask {
+            if task.running {
+                return CaffeineStatus.Injected
+            }
+        }
+        return CaffeineStatus.Clean
     }
 }
