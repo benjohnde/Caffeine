@@ -1,7 +1,7 @@
+# Caffeine
 
+Helps your Mac to stay awake.
 
-Behaves like a process wrapper for:
-https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html
+[Caffeine Retina Icons](https://webjac.com/design/caffeine-retina-icons/) by James Creixems.
 
-Caffeine Retina Icons by James Creixems:
-https://webjac.com/design/caffeine-retina-icons/
+In homage to the original [Caffeine](http://lightheadsw.com/caffeine/) which seems to be discontinued.
