@@ -9,22 +9,30 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
+    @IBOutlet weak var menu: NSMenu!
+    
+    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     let caffeine: CaffeineInjector = CaffeineInjector()
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        setupStatusBarItemMenu()
+        setupStatusBar()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
+        // NSTask should be closed automatically
     }
     
-    func setupStatusBarItemMenu() {
-        statusItem.image = getStatusIconClean()
+    func setupStatusBar() {
         statusItem.target = self
+        statusItem.highlightMode = false
+        statusItem.image = getStatusIconClean()
         statusItem.action = Selector("toggleInjection:")
+        statusItem.doubleAction = Selector("quitApplication:")
+    }
+    
+    func showMenu() {
+        statusItem.popUpStatusItemMenu(menu);
     }
     
     func getStatusIconClean() -> NSImage {
@@ -41,13 +49,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func toggleInjection(sender: NSStatusItem!) {
         if caffeine.status() == CaffeineStatus.Clean {
-            caffeine.inject()
             statusItem.image = getStatusIconInjected()
-        }
-        if caffeine.status() == CaffeineStatus.Injected {
-            caffeine.giveAntidote()
+            caffeine.inject()
+        } else {
             statusItem.image = getStatusIconClean()
+            caffeine.giveAntidote()
         }
     }
     
+    func quitApplication(sender: NSStatusItem!) {
+        NSApp.terminate(sender)
+    }
 }

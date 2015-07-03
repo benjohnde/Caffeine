@@ -20,9 +20,6 @@ class CaffeineInjector: NSObject {
     func inject() {
         giveAntidote()
         caffeinateTask = NSTask.launchedTaskWithLaunchPath("/usr/bin/caffeinate", arguments: arguments)
-        if caffeinateTask?.running == false {
-            caffeinateTask?.launch()
-        }
     }
     
     func giveAntidote() {
