@@ -18,4 +18,11 @@ class ProcessMonitor: NSObject {
     func fetch() {
         runningApplications = NSWorkspace.sharedWorkspace().runningApplications as [NSRunningApplication]
     }
+    
+    func test() {
+        // let monitor = ProcessMonitor()
+        // monitor.fetch()
+        // let test = (monitor.isApplicationRunning("com.apple.Preview") ? "Yes" : "No")
+        // NSLog(test)
+    }
 }

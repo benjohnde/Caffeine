@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4B1EB7241AFEF04F00EDFE61 /* CaffeineInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EB7231AFEF04F00EDFE61 /* CaffeineInjector.swift */; };
 		4B4003C71AFEE309009985E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4003C61AFEE309009985E4 /* AppDelegate.swift */; };
-		4B4003C91AFEE309009985E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4003C81AFEE309009985E4 /* ViewController.swift */; };
 		4B4003CB1AFEE309009985E4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4003CA1AFEE309009985E4 /* Images.xcassets */; };
 		4B4003CE1AFEE309009985E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4003CC1AFEE309009985E4 /* Main.storyboard */; };
 		4B4003DA1AFEE309009985E4 /* CaffeineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4003D91AFEE309009985E4 /* CaffeineTests.swift */; };
@@ -31,7 +30,6 @@
 		4B4003C11AFEE309009985E4 /* Caffeine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caffeine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4003C51AFEE309009985E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B4003C61AFEE309009985E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B4003C81AFEE309009985E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4B4003CA1AFEE309009985E4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4B4003CD1AFEE309009985E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B4003D31AFEE309009985E4 /* CaffeineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaffeineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,9 +80,8 @@
 				4B1EB7231AFEF04F00EDFE61 /* CaffeineInjector.swift */,
 				4B97393A1AFEE9200030AE46 /* ProcessMonitor.swift */,
 				4B4003C61AFEE309009985E4 /* AppDelegate.swift */,
-				4B4003C81AFEE309009985E4 /* ViewController.swift */,
-				4B4003CA1AFEE309009985E4 /* Images.xcassets */,
 				4B4003CC1AFEE309009985E4 /* Main.storyboard */,
+				4B4003CA1AFEE309009985E4 /* Images.xcassets */,
 				4B4003C41AFEE309009985E4 /* Supporting Files */,
 			);
 			path = Caffeine;
@@ -216,7 +213,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B1EB7241AFEF04F00EDFE61 /* CaffeineInjector.swift in Sources */,
-				4B4003C91AFEE309009985E4 /* ViewController.swift in Sources */,
 				4B97393B1AFEE9200030AE46 /* ProcessMonitor.swift in Sources */,
 				4B4003C71AFEE309009985E4 /* AppDelegate.swift in Sources */,
 			);

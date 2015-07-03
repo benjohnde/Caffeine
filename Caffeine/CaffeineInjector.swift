@@ -20,13 +20,17 @@ class CaffeineInjector: NSObject {
     func inject() {
         giveAntidote()
         caffeinateTask = NSTask.launchedTaskWithLaunchPath("/usr/bin/caffeinate", arguments: arguments)
+        if caffeinateTask?.running == false {
+            caffeinateTask?.launch()
+        }
     }
     
     func giveAntidote() {
         if let task = caffeinateTask {
-            task.terminationHandler = nil
-            task.terminate()
-            caffeinateTask = nil
+            if task.running {
+                task.terminate()
+                caffeinateTask = nil
+            }
         }
     }
     
