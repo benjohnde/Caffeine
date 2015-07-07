@@ -9,14 +9,16 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, ProcessMonitorDelegate {
     @IBOutlet weak var menu: NSMenu!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     let caffeine: CaffeineInjector = CaffeineInjector()
+    var monitor: ProcessMonitor?
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         setupStatusBar()
+        setupProcessMonitor()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -29,6 +31,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         statusItem.image = getStatusIconClean()
         statusItem.action = Selector("toggleInjection:")
         statusItem.doubleAction = Selector("quitApplication:")
+    }
+    
+    func setupProcessMonitor() {
+        monitor = ProcessMonitor(delegate: self)
     }
     
     func showMenu() {

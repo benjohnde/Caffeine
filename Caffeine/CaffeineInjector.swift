@@ -16,10 +16,13 @@ enum CaffeineStatus {
 class CaffeineInjector: NSObject {
     var caffeinateTask: NSTask?
     let arguments = ["-disu", "-w \(NSProcessInfo.processInfo().processIdentifier)"]
+    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
     
     func inject() {
         giveAntidote()
-        caffeinateTask = NSTask.launchedTaskWithLaunchPath("/usr/bin/caffeinate", arguments: arguments)
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            self.caffeinateTask = NSTask.launchedTaskWithLaunchPath("/usr/bin/caffeinate", arguments: self.arguments)
+        }
     }
     
     func giveAntidote() {
