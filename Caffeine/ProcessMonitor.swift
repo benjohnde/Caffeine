@@ -26,13 +26,15 @@ class ProcessMonitor: NSObject {
     }
     
     func checkForRunningProcesses() {
-        // TODO check for manual override
         fetch()
         if isPrivilegedApplicationRunning() {
-            delegate?.caffeine.inject()
-            return;
+            if delegate?.caffeine.status() == CaffeineStatus.Clean {
+                delegate?.caffeine.automatedInjection = true
+                delegate?.caffeine.inject()
+                return;
+            }
         }
-        delegate?.caffeine.giveAntidote()
+        delegate?.caffeine.mayGiveAntidote()
     }
     
     func fetch() {

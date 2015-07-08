@@ -15,6 +15,7 @@ enum CaffeineStatus {
 
 class CaffeineInjector: NSObject {
     var caffeinateTask: NSTask?
+    var automatedInjection = false
     let arguments = ["-disu", "-w \(NSProcessInfo.processInfo().processIdentifier)"]
     let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
     
@@ -31,6 +32,12 @@ class CaffeineInjector: NSObject {
                 task.terminate()
                 caffeinateTask = nil
             }
+        }
+    }
+    
+    func mayGiveAntidote() {
+        if automatedInjection {
+            giveAntidote()
         }
     }
     
