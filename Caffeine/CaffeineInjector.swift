@@ -6,47 +6,41 @@
 //  Copyright (c) 2015 Ben John. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 enum CaffeineStatus {
     case Clean
     case Injected
 }
 
-class CaffeineInjector: NSObject {
-    var caffeinateTask: NSTask?
-    var automatedInjection = false
+class CaffeineInjector {
+    let taskQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
     let arguments = ["-disu", "-w \(NSProcessInfo.processInfo().processIdentifier)"]
-    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+    var caffeinateTask: NSTask
+    
+    init() {
+        caffeinateTask = NSTask()
+    }
+    
+    var status: CaffeineStatus {
+        get {
+            if caffeinateTask.running {
+                return CaffeineStatus.Injected
+            }
+            return CaffeineStatus.Clean
+        }
+    }
     
     func inject() {
         giveAntidote()
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        dispatch_async(taskQueue) {
             self.caffeinateTask = NSTask.launchedTaskWithLaunchPath("/usr/bin/caffeinate", arguments: self.arguments)
         }
     }
     
     func giveAntidote() {
-        if let task = caffeinateTask {
-            if task.running {
-                task.terminate()
-                caffeinateTask = nil
-            }
+        if caffeinateTask.running {
+            caffeinateTask.terminate()
         }
-    }
-    
-    func mayGiveAntidote() {
-        if automatedInjection {
-            giveAntidote()
-        }
-    }
-    
-    func status() -> CaffeineStatus {
-        if let task = caffeinateTask {
-            if task.running {
-                return CaffeineStatus.Injected
-            }
-        }
-        return CaffeineStatus.Clean
     }
 }
