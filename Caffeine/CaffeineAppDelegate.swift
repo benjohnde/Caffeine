@@ -11,15 +11,17 @@ import Cocoa
 @NSApplicationMain
 class CaffeineAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CaffeineControllerDelegate {
     @IBOutlet weak var menu: NSMenu!
-    var caffeine: CaffeineController?
+    
+    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    private var caffeine: CaffeineController?
     
     func applicationWillBecomeActive(notification: NSNotification) {
-        caffeine = CaffeineController(delegate: self)
+        caffeine = CaffeineController(delegate: self, statusItem: statusItem)
     }
     
     // MARK: - CaffeineControllerDelegate
     
-    func popUpStatusItemMenu(statusItem: NSStatusItem) {
+    func popUpStatusItemMenu() {
         statusItem.popUpStatusItemMenu(menu)
     }
 }

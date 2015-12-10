@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol CaffeineControllerDelegate {
-    func popUpStatusItemMenu(statusItem: NSStatusItem)
+    func popUpStatusItemMenu()
 }
 
 class CaffeineController: NSObject, CaffeineStatusItemDelegate {
@@ -17,10 +17,10 @@ class CaffeineController: NSObject, CaffeineStatusItemDelegate {
     private var statusItem: CaffeineStatusItem?
     private let caffeine: CaffeineInjector = CaffeineInjector()
     
-    init(delegate: CaffeineControllerDelegate) {
+    init(delegate: CaffeineControllerDelegate, statusItem: NSStatusItem) {
         self.delegate = delegate
         super.init()
-        self.statusItem = CaffeineStatusItem(delegate: self)
+        self.statusItem = CaffeineStatusItem(delegate: self, statusItem: statusItem)
     }
     
     // - MARK: CaffeineStatusItemDelegate
@@ -35,7 +35,7 @@ class CaffeineController: NSObject, CaffeineStatusItemDelegate {
         caffeine.giveAntidote()
     }
     
-    func popUpStatusItemMenu(statusItem: NSStatusItem) {
-        delegate.popUpStatusItemMenu(statusItem)
+    func popUpStatusItemMenu() {
+        delegate.popUpStatusItemMenu()
     }
 }

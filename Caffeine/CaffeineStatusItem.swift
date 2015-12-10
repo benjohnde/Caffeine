@@ -16,12 +16,12 @@ extension NSStatusBarButton {
 
 protocol CaffeineStatusItemDelegate {
     func toggleInjection()
-    func popUpStatusItemMenu(statusItem: NSStatusItem)
+    func popUpStatusItemMenu()
 }
 
 class CaffeineStatusItem: NSObject {
-    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     private var delegate: CaffeineStatusItemDelegate
+    private var statusItem: NSStatusItem
     
     var statusIconClean: NSImage {
         get {
@@ -39,8 +39,9 @@ class CaffeineStatusItem: NSObject {
         }
     }
     
-    init(delegate: CaffeineStatusItemDelegate) {
+    init(delegate: CaffeineStatusItemDelegate, statusItem: NSStatusItem) {
         self.delegate = delegate
+        self.statusItem = statusItem
         super.init()
         statusItem.highlightMode = false
         if let button = statusItem.button {
@@ -61,7 +62,7 @@ class CaffeineStatusItem: NSObject {
     // MARK: - NSStatusBarButton actions
     
     func popUpStatusItemMenu(sender: AnyObject!) {
-        delegate.popUpStatusItemMenu(statusItem)
+        delegate.popUpStatusItemMenu()
     }
     
     func toggleInjection(sender: AnyObject!) {
