@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOKit.pwr_mgt
 
 enum CaffeineStatus {
     case Clean
@@ -14,33 +15,30 @@ enum CaffeineStatus {
 }
 
 class CaffeineInjector {
-    let taskQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-    let arguments = ["-disu", "-w \(NSProcessInfo.processInfo().processIdentifier)"]
-    var caffeinateTask: NSTask
+    let reasonForActivity = "Mac stays awake all night long."
+    var assertionID: IOPMAssertionID = IOPMAssertionID(0)
+    var status: CaffeineStatus = CaffeineStatus.Clean
     
-    init() {
-        caffeinateTask = NSTask()
-    }
-    
-    var status: CaffeineStatus {
-        get {
-            if caffeinateTask.running {
-                return CaffeineStatus.Injected
-            }
-            return CaffeineStatus.Clean
-        }
+    private func createAssertion() -> IOReturn {
+        let type = kIOPMAssertPreventUserIdleDisplaySleep
+        let level = IOPMAssertionLevel(kIOPMAssertionLevelOn)
+        return IOPMAssertionCreateWithName(type, level, reasonForActivity, &assertionID)
     }
     
     func inject() {
-        giveAntidote()
-        dispatch_async(taskQueue) {
-            self.caffeinateTask = NSTask.launchedTaskWithLaunchPath("/usr/bin/caffeinate", arguments: self.arguments)
+        release()
+        if createAssertion() == kIOReturnSuccess {
+            print("Caffeine injected with assertion \(assertionID)")
+            status = CaffeineStatus.Injected
         }
     }
     
-    func giveAntidote() {
-        if caffeinateTask.running {
-            caffeinateTask.terminate()
+    func release() {
+        if status == CaffeineStatus.Injected {
+            status = CaffeineStatus.Clean
+            if IOPMAssertionRelease(assertionID) != kIOReturnSuccess {
+                print("Caffeine could not be released")
+            }
         }
     }
 }

@@ -15,8 +15,12 @@ class CaffeineAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, Caff
     private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     private var caffeine: CaffeineController?
     
-    func applicationWillBecomeActive(notification: NSNotification) {
+    func applicationDidFinishLaunching(notification: NSNotification) {
         caffeine = CaffeineController(delegate: self, statusItem: statusItem)
+    }
+    
+    func applicationWillTerminate(notification: NSNotification) {
+        caffeine!.shutdown()
     }
     
     // MARK: - CaffeineControllerDelegate

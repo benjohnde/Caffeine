@@ -23,16 +23,20 @@ class CaffeineController: NSObject, CaffeineStatusItemDelegate {
         self.statusItem = CaffeineStatusItem(delegate: self, statusItem: statusItem)
     }
     
+    func shutdown() {
+        caffeine.release()
+    }
+    
     // - MARK: CaffeineStatusItemDelegate
     
     func toggleInjection() {
         if caffeine.status == CaffeineStatus.Clean {
             statusItem!.showInjectedStatusIcon()
             caffeine.inject()
-            return;
+            return
         }
         statusItem!.showCleanStatusIcon()
-        caffeine.giveAntidote()
+        caffeine.release()
     }
     
     func popUpStatusItemMenu() {

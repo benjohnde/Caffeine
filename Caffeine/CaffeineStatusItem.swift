@@ -1,6 +1,6 @@
 //
-//  CaffeineStatusItem.swift
-//  Caffeine
+//  BaristaStatusItem.swift
+//  Barista
 //
 //  Created by Ben John on 10/12/15.
 //  Copyright © 2015 Ben John. All rights reserved.
@@ -8,9 +8,14 @@
 
 import Cocoa
 
+struct Action {
+    static let rightMouseDown = #selector(CaffeineStatusItem.popUpStatusItemMenu(_:))
+    static let leftMouseDown = #selector(CaffeineStatusItem.toggleInjection(_:))
+}
+
 extension NSStatusBarButton {
     override public func rightMouseDown(theEvent: NSEvent) {
-        target!.performSelector("popUpStatusItemMenu:")
+        target!.performSelector(Action.rightMouseDown)
     }
 }
 
@@ -46,7 +51,7 @@ class CaffeineStatusItem: NSObject {
         statusItem.highlightMode = false
         if let button = statusItem.button {
             button.target = self
-            button.action = "toggleInjection:"
+            button.action = Action.leftMouseDown
         }
         showCleanStatusIcon()
     }
