@@ -8,4 +8,4 @@ In homage to the original [Caffeine](http://lightheadsw.com/caffeine/) which see
 
 ## Usage
 
-Right click on the icon, then you can close Caffeine via popup menu.
+Right click on the icon to close Caffeine.
