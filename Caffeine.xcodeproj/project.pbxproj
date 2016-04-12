@@ -14,6 +14,7 @@
 		4B4003CB1AFEE309009985E4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4003CA1AFEE309009985E4 /* Images.xcassets */; };
 		4B4003CE1AFEE309009985E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4003CC1AFEE309009985E4 /* Main.storyboard */; };
 		4B4003DA1AFEE309009985E4 /* CaffeineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4003D91AFEE309009985E4 /* CaffeineTests.swift */; };
+		4BABAEB01CBD8A9000821E4A /* CaffeineStatusIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BABAEAF1CBD8A9000821E4A /* CaffeineStatusIcon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		4B4003D31AFEE309009985E4 /* CaffeineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaffeineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4003D81AFEE309009985E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B4003D91AFEE309009985E4 /* CaffeineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeineTests.swift; sourceTree = "<group>"; };
+		4BABAEAF1CBD8A9000821E4A /* CaffeineStatusIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaffeineStatusIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				4B1EB7231AFEF04F00EDFE61 /* CaffeineInjector.swift */,
+				4BABAEAF1CBD8A9000821E4A /* CaffeineStatusIcon.swift */,
 				4B08D7CE1C1987AA0068B438 /* CaffeineStatusItem.swift */,
 				4B08D7D01C198C930068B438 /* CaffeineController.swift */,
 				4B4003C61AFEE309009985E4 /* CaffeineAppDelegate.swift */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B08D7D11C198C930068B438 /* CaffeineController.swift in Sources */,
+				4BABAEB01CBD8A9000821E4A /* CaffeineStatusIcon.swift in Sources */,
 				4B1EB7241AFEF04F00EDFE61 /* CaffeineInjector.swift in Sources */,
 				4B4003C71AFEE309009985E4 /* CaffeineAppDelegate.swift in Sources */,
 				4B08D7CF1C1987AA0068B438 /* CaffeineStatusItem.swift in Sources */,

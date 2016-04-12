@@ -12,14 +12,13 @@ protocol CaffeineControllerDelegate {
     func popUpStatusItemMenu()
 }
 
-class CaffeineController: NSObject, CaffeineStatusItemDelegate {
+class CaffeineController: CaffeineStatusItemDelegate {
     private var delegate: CaffeineControllerDelegate
     private var statusItem: CaffeineStatusItem?
     private let caffeine: CaffeineInjector = CaffeineInjector()
     
     init(delegate: CaffeineControllerDelegate, statusItem: NSStatusItem) {
         self.delegate = delegate
-        super.init()
         self.statusItem = CaffeineStatusItem(delegate: self, statusItem: statusItem)
     }
     
@@ -27,7 +26,7 @@ class CaffeineController: NSObject, CaffeineStatusItemDelegate {
         caffeine.release()
     }
     
-    // - MARK: CaffeineStatusItemDelegate
+    // MARK: - CaffeineStatusItemDelegate
     
     func toggleInjection() {
         if caffeine.status == CaffeineStatus.Clean {

@@ -9,14 +9,8 @@
 import Cocoa
 
 struct Action {
-    static let rightMouseDown = #selector(CaffeineStatusItem.popUpStatusItemMenu(_:))
     static let leftMouseDown = #selector(CaffeineStatusItem.toggleInjection(_:))
-}
-
-extension NSStatusBarButton {
-    override public func rightMouseDown(theEvent: NSEvent) {
-        target!.performSelector(Action.rightMouseDown)
-    }
+    static let rightMouseDown = #selector(CaffeineStatusItem.popUpStatusItemMenu(_:))
 }
 
 protocol CaffeineStatusItemDelegate {
@@ -27,22 +21,6 @@ protocol CaffeineStatusItemDelegate {
 class CaffeineStatusItem: NSObject {
     private var delegate: CaffeineStatusItemDelegate
     private var statusItem: NSStatusItem
-    
-    var statusIconClean: NSImage {
-        get {
-            let icon = NSImage(named: "statusIconClean")!
-            icon.template = true
-            return icon
-        }
-    }
-    
-    var statusIconInjected: NSImage {
-        get {
-            let icon = NSImage(named: "statusIconInjected")!
-            icon.template = true
-            return icon
-        }
-    }
     
     init(delegate: CaffeineStatusItemDelegate, statusItem: NSStatusItem) {
         self.delegate = delegate
@@ -57,20 +35,26 @@ class CaffeineStatusItem: NSObject {
     }
     
     func showCleanStatusIcon() {
-        statusItem.button!.image = statusIconClean
+        statusItem.button!.image = StatusIcon.clean
     }
     
     func showInjectedStatusIcon() {
-        statusItem.button!.image = statusIconInjected
+        statusItem.button!.image = StatusIcon.injected
     }
     
     // MARK: - NSStatusBarButton actions
     
+    func toggleInjection(sender: AnyObject!) {
+        delegate.toggleInjection()
+    }
+    
     func popUpStatusItemMenu(sender: AnyObject!) {
         delegate.popUpStatusItemMenu()
     }
-    
-    func toggleInjection(sender: AnyObject!) {
-        self.delegate.toggleInjection()
+}
+
+extension NSStatusBarButton {
+    override public func rightMouseDown(theEvent: NSEvent) {
+        target!.performSelector(Action.rightMouseDown)
     }
 }

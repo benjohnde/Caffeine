@@ -27,18 +27,19 @@ class CaffeineInjector {
     
     func inject() {
         release()
-        if createAssertion() == kIOReturnSuccess {
-            print("Caffeine injected with assertion \(assertionID)")
-            status = CaffeineStatus.Injected
+        guard createAssertion() == kIOReturnSuccess else {
+            print("Caffeine could not be injected,")
+            return
         }
+        status = CaffeineStatus.Injected
     }
     
     func release() {
-        if status == CaffeineStatus.Injected {
-            status = CaffeineStatus.Clean
-            if IOPMAssertionRelease(assertionID) != kIOReturnSuccess {
-                print("Caffeine could not be released")
-            }
+        guard status == CaffeineStatus.Injected else { return }
+        guard IOPMAssertionRelease(assertionID) == kIOReturnSuccess else {
+            print("Caffeine could not be released.")
+            return
         }
+        status = CaffeineStatus.Clean
     }
 }

@@ -9,11 +9,13 @@
 import Cocoa
 
 @NSApplicationMain
-class CaffeineAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CaffeineControllerDelegate {
-    @IBOutlet weak var menu: NSMenu!
-    
+class CaffeineAppDelegate: NSObject, NSApplicationDelegate, CaffeineControllerDelegate {
     private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     private var caffeine: CaffeineController?
+    
+    @IBOutlet weak var menu: NSMenu!
+    
+    // MARK: - NSApplicationDelegate
     
     func applicationDidFinishLaunching(notification: NSNotification) {
         caffeine = CaffeineController(delegate: self, statusItem: statusItem)
