@@ -8,7 +8,7 @@
 
 import Cocoa
 
-struct Action {
+private struct Action {
     static let leftMouseDown = #selector(CaffeineStatusItem.toggleInjection(_:))
     static let rightMouseDown = #selector(CaffeineStatusItem.popUpStatusItemMenu(_:))
 }
