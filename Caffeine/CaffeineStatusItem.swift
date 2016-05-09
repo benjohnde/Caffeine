@@ -8,7 +8,7 @@
 
 import Cocoa
 
-private struct Action {
+private extension Selector {
     static let leftMouseDown = #selector(CaffeineStatusItem.toggleInjection(_:))
     static let rightMouseDown = #selector(CaffeineStatusItem.popUpStatusItemMenu(_:))
 }
@@ -29,7 +29,7 @@ class CaffeineStatusItem: NSObject {
         statusItem.highlightMode = false
         if let button = statusItem.button {
             button.target = self
-            button.action = Action.leftMouseDown
+            button.action = .leftMouseDown
         }
         showCleanStatusIcon()
     }
@@ -55,6 +55,6 @@ class CaffeineStatusItem: NSObject {
 
 extension NSStatusBarButton {
     override public func rightMouseDown(theEvent: NSEvent) {
-        target!.performSelector(Action.rightMouseDown)
+        target!.performSelector(.rightMouseDown)
     }
 }
