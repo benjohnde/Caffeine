@@ -10,19 +10,19 @@ import Foundation
 import IOKit.pwr_mgt
 
 enum CaffeineStatus {
-    case Clean
-    case Injected
+    case clean
+    case injected
 }
 
 class CaffeineInjector {
     let reasonForActivity = "Mac stays awake all night long."
     var assertionID: IOPMAssertionID = IOPMAssertionID(0)
-    var status: CaffeineStatus = CaffeineStatus.Clean
+    var status: CaffeineStatus = CaffeineStatus.clean
     
-    private func createAssertion() -> IOReturn {
+    fileprivate func createAssertion() -> IOReturn {
         let type = kIOPMAssertPreventUserIdleDisplaySleep
         let level = IOPMAssertionLevel(kIOPMAssertionLevelOn)
-        return IOPMAssertionCreateWithName(type, level, reasonForActivity, &assertionID)
+        return IOPMAssertionCreateWithName(type as CFString!, level, reasonForActivity as CFString!, &assertionID)
     }
     
     func inject() {
@@ -31,15 +31,15 @@ class CaffeineInjector {
             print("Caffeine could not be injected,")
             return
         }
-        status = CaffeineStatus.Injected
+        status = CaffeineStatus.injected
     }
     
     func release() {
-        guard status == CaffeineStatus.Injected else { return }
+        guard status == CaffeineStatus.injected else { return }
         guard IOPMAssertionRelease(assertionID) == kIOReturnSuccess else {
             print("Caffeine could not be released.")
             return
         }
-        status = CaffeineStatus.Clean
+        status = CaffeineStatus.clean
     }
 }

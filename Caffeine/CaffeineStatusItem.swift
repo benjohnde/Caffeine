@@ -19,8 +19,8 @@ protocol CaffeineStatusItemDelegate {
 }
 
 class CaffeineStatusItem: NSObject {
-    private var delegate: CaffeineStatusItemDelegate
-    private var statusItem: NSStatusItem
+    fileprivate var delegate: CaffeineStatusItemDelegate
+    fileprivate var statusItem: NSStatusItem
     
     init(delegate: CaffeineStatusItemDelegate, statusItem: NSStatusItem) {
         self.delegate = delegate
@@ -44,17 +44,17 @@ class CaffeineStatusItem: NSObject {
     
     // MARK: - NSStatusBarButton actions
     
-    func toggleInjection(sender: AnyObject!) {
+    func toggleInjection(_ sender: AnyObject!) {
         delegate.toggleInjection()
     }
     
-    func popUpStatusItemMenu(sender: AnyObject!) {
+    func popUpStatusItemMenu(_ sender: AnyObject!) {
         delegate.popUpStatusItemMenu()
     }
 }
 
 extension NSStatusBarButton {
-    override public func rightMouseDown(theEvent: NSEvent) {
-        target!.performSelector(.rightMouseDown)
+    override open func rightMouseDown(with theEvent: NSEvent) {
+        _ = target!.perform(.rightMouseDown)
     }
 }

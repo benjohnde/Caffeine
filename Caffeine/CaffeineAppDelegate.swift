@@ -10,24 +10,24 @@ import Cocoa
 
 @NSApplicationMain
 class CaffeineAppDelegate: NSObject, NSApplicationDelegate, CaffeineControllerDelegate {
-    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
-    private var caffeine: CaffeineController?
+    fileprivate let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    fileprivate var caffeine: CaffeineController?
     
     @IBOutlet weak var menu: NSMenu!
     
     // MARK: - NSApplicationDelegate
     
-    func applicationDidFinishLaunching(notification: NSNotification) {
+    func applicationDidFinishLaunching(_ notification: Notification) {
         caffeine = CaffeineController(delegate: self, statusItem: statusItem)
     }
     
-    func applicationWillTerminate(notification: NSNotification) {
+    func applicationWillTerminate(_ notification: Notification) {
         caffeine!.shutdown()
     }
     
     // MARK: - CaffeineControllerDelegate
     
     func popUpStatusItemMenu() {
-        statusItem.popUpStatusItemMenu(menu)
+        statusItem.popUpMenu(menu)
     }
 }

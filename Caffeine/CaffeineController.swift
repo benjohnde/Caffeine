@@ -13,9 +13,9 @@ protocol CaffeineControllerDelegate {
 }
 
 class CaffeineController: CaffeineStatusItemDelegate {
-    private var delegate: CaffeineControllerDelegate
-    private var statusItem: CaffeineStatusItem?
-    private let caffeine: CaffeineInjector = CaffeineInjector()
+    fileprivate var delegate: CaffeineControllerDelegate
+    fileprivate var statusItem: CaffeineStatusItem?
+    fileprivate let caffeine: CaffeineInjector = CaffeineInjector()
     
     init(delegate: CaffeineControllerDelegate, statusItem: NSStatusItem) {
         self.delegate = delegate
@@ -29,7 +29,7 @@ class CaffeineController: CaffeineStatusItemDelegate {
     // MARK: - CaffeineStatusItemDelegate
     
     func toggleInjection() {
-        if caffeine.status == CaffeineStatus.Clean {
+        if caffeine.status == CaffeineStatus.clean {
             statusItem!.showInjectedStatusIcon()
             caffeine.inject()
             return
