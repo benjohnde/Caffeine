@@ -44,11 +44,11 @@ class CaffeineStatusItem: NSObject {
     
     // MARK: - NSStatusBarButton actions
     
-    func toggleInjection(_ sender: AnyObject!) {
+    @objc func toggleInjection(_ sender: AnyObject!) {
         delegate.toggleInjection()
     }
     
-    func popUpStatusItemMenu(_ sender: AnyObject!) {
+    @objc func popUpStatusItemMenu(_ sender: AnyObject!) {
         delegate.popUpStatusItemMenu()
     }
 }

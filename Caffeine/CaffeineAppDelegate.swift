@@ -10,7 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 class CaffeineAppDelegate: NSObject, NSApplicationDelegate, CaffeineControllerDelegate {
-    fileprivate let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    fileprivate let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     fileprivate var caffeine: CaffeineController?
     
     @IBOutlet weak var menu: NSMenu!

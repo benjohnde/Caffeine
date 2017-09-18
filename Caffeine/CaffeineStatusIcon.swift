@@ -10,12 +10,12 @@ import Cocoa
 
 struct StatusIcon {
     static var clean: NSImage {
-        let icon = NSImage(named: "statusIconClean")!
+        let icon = NSImage(named: NSImage.Name(rawValue: "statusIconClean"))!
         icon.isTemplate = true
         return icon
     }
     static var injected: NSImage {
-        let icon = NSImage(named: "statusIconInjected")!
+        let icon = NSImage(named: NSImage.Name(rawValue: "statusIconInjected"))!
         icon.isTemplate = true
         return icon
     }
