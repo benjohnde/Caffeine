@@ -35,15 +35,14 @@ class CaffeineStatusItem: NSObject {
     }
     
     func showCleanStatusIcon() {
-        statusItem.button!.image = StatusIcon.clean
+        statusItem.button!.image = StatusIcon.clean.image
     }
     
     func showInjectedStatusIcon() {
-        statusItem.button!.image = StatusIcon.injected
+        statusItem.button!.image = StatusIcon.injected.image
     }
     
     // MARK: - NSStatusBarButton actions
-    
     @objc func toggleInjection(_ sender: AnyObject!) {
         delegate.toggleInjection()
     }

@@ -16,7 +16,6 @@ class CaffeineAppDelegate: NSObject, NSApplicationDelegate, CaffeineControllerDe
     @IBOutlet weak var menu: NSMenu!
     
     // MARK: - NSApplicationDelegate
-    
     func applicationDidFinishLaunching(_ notification: Notification) {
         caffeine = CaffeineController(delegate: self, statusItem: statusItem)
     }
@@ -26,7 +25,6 @@ class CaffeineAppDelegate: NSObject, NSApplicationDelegate, CaffeineControllerDe
     }
     
     // MARK: - CaffeineControllerDelegate
-    
     func popUpStatusItemMenu() {
         statusItem.popUpMenu(menu)
     }

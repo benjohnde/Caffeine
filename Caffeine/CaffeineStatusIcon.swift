@@ -8,15 +8,19 @@
 
 import Cocoa
 
-struct StatusIcon {
-    static var clean: NSImage {
-        let icon = NSImage(named: NSImage.Name(rawValue: "statusIconClean"))!
-        icon.isTemplate = true
-        return icon
+enum StatusIcon: String {
+    case clean = "statusIconClean"
+    case injected = "statusIconInjected"
+    
+    fileprivate var named: NSImage.Name {
+        return NSImage.Name(rawValue: self.rawValue)
     }
-    static var injected: NSImage {
-        let icon = NSImage(named: NSImage.Name(rawValue: "statusIconInjected"))!
-        icon.isTemplate = true
-        return icon
+    
+    var image: NSImage {
+        guard let image = NSImage(named: named) else {
+            fatalError()
+        }
+        image.isTemplate = true
+        return image
     }
 }

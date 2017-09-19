@@ -27,7 +27,6 @@ class CaffeineController: CaffeineStatusItemDelegate {
     }
     
     // MARK: - CaffeineStatusItemDelegate
-    
     func toggleInjection() {
         if caffeine.status == CaffeineStatus.clean {
             statusItem!.showInjectedStatusIcon()
